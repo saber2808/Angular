@@ -24,12 +24,40 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/styles"
             ],
             "styles": [
-              "src/styles.css"
+              "template_css/animate.css",
+              "template_css/baguetteBox.min.css",
+              "template_css/bootstrap.min.css",
+              "template_css/classic.css",
+              "template_css/classic.date.css",
+              "template_css/classic.time.css",
+              "template_css/custom.css",
+              "template_css/font-awesome.min.css",
+              "template_css/responsive.css",
+              "template_css/style.css",
+              "template_css/superslides.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "template_js/custom.js",
+              "template_js/bootstrap.min.js",
+              "template_js/images-loded.min.js",
+              "template_js/baguetteBox.min.js",
+              "template_js/contact-form-script.js",
+              "template_js/form-validator.min.js",
+              "template_js/isotope.min.js",
+              "template_js/jquery-3.2.1.min.js",
+              "template_js/jquery.mapify.js",
+              "template_js/jquery.superslides.min.js",
+              "template_js/legacy.js",
+              "template_js/picker.date.js",
+              "template_js/picker.js",
+              "template_js/picker.time.js",
+              "template_js/popper.min.js"
+            ]
           },
           "configurations": {
             "production": {
