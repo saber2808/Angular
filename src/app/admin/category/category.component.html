@@ -1,0 +1,50 @@
+
+<form #categoryForm="ngForm"> 
+<div class="page" >
+   
+    <label style="text-align: center;" ><h1>CATEGORY</h1></label>
+    
+    <label class="field field_v1">
+      <input class="field__input" placeholder="Best Seller" id="title" name="title" for="title" [(ngModel)]="title">
+      <span class="field__label-wrap">
+        <span class="field__label">Title</span>
+      </span>
+    </label>
+    <label class="field field_v2">
+      <input class="field__input" placeholder="Products best seller" id="desc" name="desc" for="desc" [(ngModel)]="desc">
+      <span class="field__label-wrap">
+        <span class="field__label">Description</span>
+      </span>
+    </label>   
+    <button class="snip1582" type="button" (click)="addCate()">Add Category</button>
+    <button class="snip1582" type="button" (click)="updateCate(categoryForm)">Update Category</button>
+  </div>
+</form>
+
+  <hr color="black" size="5px">
+  <div class="container">
+
+    <h2>Common Fruits</h2>
+    <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+       <thead class="thead-dark">
+          <tr>
+             <th>ID</th>
+             <th>Title</th>
+             <th>Description</th>
+             <th>Action</th>
+          </tr>
+       </thead>
+       <tbody>
+          <tr *ngFor="let cate of cateList">
+             <td>{{cate.id}}</td>
+             <td>{{cate.title}}</td>
+             <td>{{cate.desc}}</td>
+             <td style="text-align: center;">
+               <button class="custom-btn btn-3" (click)="onEdit(cate)" data-toggle="modal" data-target="#exampleModal2">Update</button>
+               <button class="custom-btn btn-5" (click)="deleteCate(cate)">Delete</button>
+            </td>
+          </tr>
+       </tbody>
+    </table>
+ </div>
+ 

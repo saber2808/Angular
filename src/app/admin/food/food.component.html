@@ -1,0 +1,66 @@
+
+<form #foodForm="ngForm"> 
+    <div class="page" >
+       
+        <label style="text-align: center;" ><h1>FOOD</h1></label>
+        
+        <label class="field field_v1">
+          <input class="field__input" placeholder="Best Seller" id="name" name="name" for="name" [(ngModel)]="name">
+          <span class="field__label-wrap">
+            <span class="field__label">Name</span>
+          </span>
+        </label>
+        <label class="field field_v2">
+          <input class="field__input" placeholder="Products best seller" id="desc" name="desc" for="desc" [(ngModel)]="desc">
+          <span class="field__label-wrap">
+            <span class="field__label">Description</span>
+          </span>
+        </label>   
+        <label class="field field_v2">
+            <input class="field__input" placeholder="Products best seller" id="quantity" name="quantity" for="quantity" [(ngModel)]="quantity">
+            <span class="field__label-wrap">
+              <span class="field__label">Quantity</span>
+            </span>
+          </label>  
+          <label class="field field_v2">
+            <input class="field__input" placeholder="Products best seller" id="price" name="price" for="price" [(ngModel)]="price">
+            <span class="field__label-wrap">
+              <span class="field__label">Price</span>
+            </span>
+          </label>  
+        <button class="snip1582" type="button" (click)="addFood()">Add Food</button>
+        <button class="snip1582" type="button" (click)="updateFood(foodForm)">Update Food</button>
+      </div>
+    </form>
+    
+      <hr color="black" size="5px">
+      <div class="container">
+    
+        <h2>Common Fruits</h2>
+        <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+           <thead class="thead-dark">
+              <tr>
+                 <th>ID</th>
+                 <th>Title</th>
+                 <th>Description</th>
+                 <th>Quantity</th>
+                 <th>Price</th>
+                 <th>Action</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr *ngFor="let food of foodList">
+                 <td>{{food.id}}</td>
+                 <td>{{food.name}}</td>
+                 <td>{{food.desc}}</td>
+                 <td>{{food.quantity}}</td>
+                 <td>{{food.price}}</td>
+                 <td style="text-align: center;">
+                   <button class="custom-btn btn-3" (click)="onEdit(food)" data-toggle="modal" data-target="#exampleModal2">Update</button>
+                   <button class="custom-btn btn-5" (click)="deleteFood(food)">Delete</button>
+                </td>
+              </tr>
+           </tbody>
+        </table>
+     </div>
+     

@@ -56,7 +56,8 @@
               "template_js/picker.date.js",
               "template_js/picker.js",
               "template_js/picker.time.js",
-              "template_js/popper.min.js"
+              "template_js/popper.min.js",
+              "template_js/cart.js"
             ]
           },
           "configurations": {
@@ -122,6 +123,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
