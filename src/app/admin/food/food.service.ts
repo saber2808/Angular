@@ -6,8 +6,9 @@ import { Food } from "src/model/food.model";
     providedIn: "root",
 })
 
-export class FoodService{
+export class FoodService {
 
+   
     productCollection!: AngularFirestoreCollection<Food>;
 
     constructor(private data: AngularFirestore){}
@@ -25,10 +26,14 @@ export class FoodService{
     }
 
     deleteFood(food: Food){
-        return this.data.doc('/Foods/' + food.id).delete();
+        return this.data.collection('/Foods').doc(food.id).delete();
     }
 
     updateFood(FoodId: String, food: Food){
-        return this.data.doc('/Foods/' + FoodId).update(food)
+        return this.data.collection('/Foods').doc(FoodId.toString()).update(food)
     }
+    getFoodTrending(){
+        return this.data.collection('/Foods').valueChanges()
+    }
+    
 }

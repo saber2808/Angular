@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 img" style="text-align: left;">
+        <img src="{{dataUser.image}}" style="height: 300px; width: 300px;"  alt="" class="img-rounded">
+      </div>
+      <div class="col-md-6 details">
+        <blockquote>
+          <h5>Họ và tên: {{dataUser.fullName}}</h5>
+          <small><cite title="Source Title">Địa chỉ: {{dataUser.address}}<i class="icon-map-marker"></i></cite></small>
+        </blockquote>
+        <p>
+          Email: {{dataUser.email}}<br>
+          Số điện thoại: {{dataUser.phoneNumber}}<br>
+          mật khẩu: <input type="password" value="{{dataUser.phoneNumber}}" disabled> <a href="">Đổi mật khẩu</a><br>
+          Trạng thái tài khoản: {{dataUser.status}}<br>
+          Tài khoản admin: {{dataUser.isAdmin}}<br>
+        </p>
+      </div>
+    </div>
+  </div>

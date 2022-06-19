@@ -10,31 +10,55 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" routerLinkActive="active" routerLink="/home" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/menu" href="">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/about" href="">About</a></li>
-						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/login" href="">Login</a></li>
-						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/register" href="">Register</a></li>
+						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/home" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/menu">Menu</a></li>
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Error</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation.html">Reservation</a>
-								<a class="dropdown-item" href="stuff.html">Stuff</a>
-								<a class="dropdown-item" href="gallery.html">Gallery</a>
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Category</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a" >
+								<a class="dropdown-item" *ngFor="let cate of cateList" href="">{{cate.title}}</a>
 							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/cart" href=""><img src="/assets/icons/cart.png" style="height: 30px; width: 40px;"/></a></li>
-						<li class="nav-item dropdown" ngbDropdown>
+					
+						<li class="nav-item">
+							<a class="text-reset me-3" routerLinkActive="active" routerLink="/cart" id="cart" href="#">
+								<i class="fas fa-shopping-cart"></i>
+								<div style="font-size: 10px" class="badge bg-danger">{{totalItem}}</div>
+							</a>
+						</li>
+						<li class="nav-item dropdown" ngbDropdown >
 							<a type="button" class="nav-link dropdown-toggle" ngbDropdownToggle href="" id="dropdown-a" data-toggle="dropdown"><img src="/assets/icons/account.png" style="height: 30px;"/></a>
-							<div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdown-a">
-								<a class="dropdown-item" ngbDropdownItem href="reservation.html">Login</a>
-								<a class="dropdown-item" ngbDropdownItem href="stuff.html">Stuff</a>
-								<a class="dropdown-item" ngbDropdownItem href="gallery.html">Gallery</a>
+							<div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdown-a"  *ngIf="isLoggedIn" >
+								<a class="dropdown-item" routerLinkActive="active" routerLink="/account" ngbDropdownItem href="">Thông tin cá nhân</a>
+								<a class="dropdown-item" routerLinkActive="active" routerLink="/register" ngbDropdownItem href="">Lịch sử mua hàng</a>
+								<a class="dropdown-item" (click)="logout()" ngbDropdownItem href="" >Logout</a>
+							</div>
+							<div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdown-a"  *ngIf="!isLoggedIn">
+								<a class="dropdown-item" routerLinkActive="active" routerLink="/login" ngbDropdownItem href="">Login</a>
+								<a class="dropdown-item" routerLinkActive="active" routerLink="/register" ngbDropdownItem href="">Register</a>
 							</div>
 						</li>
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
+	<body>
+		<div class="container list-cart">
+			<div class="shopping-cart">
+			  <div class="shopping-cart-header">
+				<i class="fa fa-shopping-cart cart-icon"></i
+				><span class="badge">3</span>
+				<div class="shopping-cart-total">
+				  <span class="lighter-text">Total:</span>
+				  <span class="main-color-text">$2,229.97</span>
+				</div>
+			  </div>
+
+			  
+
+			  <a href="checkout.html" class="button">Checkout</a>
+			</div>
+		  </div>
+	</body>
+	

@@ -18,12 +18,26 @@ export class RegisterComponent implements OnInit {
   isSubmitted: boolean = false;
   user: User[] = [];
   
+  userObj : User = {
+    id: '',
+    fullName: '',
+    email: '',
+    password: '',
+    address: '',
+    phoneNumber: '',
+    image: '',
+    isAdmin: false,
+    status: false,
+  }
   id: string = '';
   fullName: string = '';
   email: string = '';
   password: string = '';
   address: string = '';
   phoneNumber: string = '';
+  image: string = '';
+  isAdmin: boolean = false;
+  status: boolean = false;
   formTemplate = new FormGroup({
     image: new FormControl(''),
     id: new FormControl(''),
@@ -31,7 +45,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(''),
     address: new FormControl(''),
     phoneNumber: new FormControl(''),
-
+    isAdmin: new FormControl('')
   })
   
   constructor(private auth : AuthService, private storage: AngularFireStorage ) { }
@@ -78,15 +92,14 @@ export class RegisterComponent implements OnInit {
     return this.formTemplate['controls']
   }
   onsubmit(formTemplate: NgForm){
-    var test = formTemplate.value.email;
     this.isSubmitted = true;
       if(this.formTemplate.valid){
-        var filePath = `${formTemplate.value.email}/${this.selectedImage.name}_${new Date().getTime()}`
+        var filePath = `${'voucher'}/${formTemplate.value.email}/${this.selectedImage.name}_${new Date().getTime()}`
         const fileRef = this.storage.ref(filePath);
         this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
           finalize(()=>{
             fileRef.getDownloadURL().subscribe((url)=>{
-              formTemplate.value.imageUrl = url;
+              formTemplate.value.image = url;
               this.register(formTemplate);
             })
           })
@@ -98,6 +111,10 @@ export class RegisterComponent implements OnInit {
     this.formTemplate.setValue({
       image: ''
     })
+  }
+  selectStatus: string = '';
+  selectChangeHander(event: any){
+    this.selectStatus = event.target.value;
   }
 
 }

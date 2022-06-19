@@ -23,6 +23,18 @@ import { CartComponent } from './cart/cart.component';
 import { UserComponent } from './admin/user/user.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { VoucherComponent } from './admin/voucher/voucher.component';
+import { CheckoutComponent } from './cart/checkout/checkout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FilterPipe } from './shared/filter.pipe';
+import { NgToastModule } from 'ng-angular-popup';
+import { DetailFoodComponent } from './admin/food/detail-food/detail-food.component';
+import { DetailCategoryComponent } from './admin/category/detail-category/detail-category.component';
+import { DetailUserComponent } from './admin/user/detail-user/detail-user.component';
+import { CreateUserComponent } from './admin/user/create-user/create-user.component';
+import { ProfileComponent } from './profile/profile.component';
+
+
 
 @NgModule({
   declarations: [
@@ -39,6 +51,14 @@ import { VoucherComponent } from './admin/voucher/voucher.component';
     CartComponent,
     UserComponent,
     VoucherComponent,
+    CheckoutComponent,
+    DashboardComponent,
+    FilterPipe,
+    DetailFoodComponent,
+    DetailCategoryComponent,
+    DetailUserComponent,
+    CreateUserComponent,
+    ProfileComponent,
     
   ],
   imports: [
@@ -52,7 +72,9 @@ import { VoucherComponent } from './admin/voucher/voucher.component';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     DropDownListModule,
-    MatDialogModule
+    MatDialogModule,
+    MDBBootstrapModule.forRoot(),
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

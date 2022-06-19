@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
+import { NgToastService } from 'ng-angular-popup'
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private auth : AuthService) { }
 
   ngOnInit(): void {
+    
   }
 
   login(){
@@ -29,7 +31,6 @@ export class LoginComponent implements OnInit {
       return;
     } 
     this.auth.login(this.email, this.password);
-    
     this.email = '';
     this.password = '';
   }

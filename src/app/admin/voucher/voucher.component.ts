@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
-import { Food } from 'src/model/food.model';
 import { Voucher } from 'src/model/voucher.model';
 import { VoucherService } from './voucher.service';
+import { AngularFireStorage} from '@angular/fire/compat/storage'
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-voucher',
@@ -10,6 +11,10 @@ import { VoucherService } from './voucher.service';
   styleUrls: ['./voucher.component.css']
 })
 export class VoucherComponent implements OnInit {
+
+  imgSrc : string = '/assets/icons/Voucher.png';
+  selectedImage: any = null;
+  isSubmitted: boolean = false;
 
   voucherList : Voucher[] = [];
   voucherUpdateForm!: FormGroup;
@@ -29,7 +34,7 @@ export class VoucherComponent implements OnInit {
 
   editState: boolean = false;
 
-  constructor(private data: VoucherService){}
+  constructor(private data: VoucherService, private storage: AngularFireStorage){}
 
   ngOnInit(): void {
     this.getAllVoucher();
@@ -48,7 +53,7 @@ export class VoucherComponent implements OnInit {
     })
   }
 
-  addVoucher(){
+  addVoucher(voucherForm: NgForm){
     if(this.name == '' || this.desc == '' || this.quantity == 0 || this.discount == 0){
       alert('title or description can not be null and quantity or price can not be 0')
     }
@@ -58,7 +63,19 @@ export class VoucherComponent implements OnInit {
     this.voucherObj.quantity = this.quantity;
     this.voucherObj.discount = this.discount;
 
-    this.data.addVoucher(this.voucherObj);
+    this.isSubmitted = true;
+    if(voucherForm.value!=null){
+      var filePath = `${'voucher'}/${this.name}/${this.selectedImage.name}_${new Date().getTime()}`
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+        finalize(()=>{
+          fileRef.getDownloadURL().subscribe((url)=>{
+            this.voucherObj.image = url;
+            this.data.addVoucher(this.voucherObj);
+          })
+        })
+      ).subscribe();
+    } 
     this.resetForm();
   }
 
@@ -94,6 +111,18 @@ export class VoucherComponent implements OnInit {
       price: food.price,
       image: food.image
     })
+  }
+  showPreview(event: any){
+    if(event.target.files && event.target.files[0]){
+      const reader = new FileReader();
+      reader.onload = (e:any)=>this.imgSrc= e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    }
+    else{
+      this.imgSrc = '/assets/icons/account.png';
+      this.selectedImage = null;
+    }
   }
 
 }

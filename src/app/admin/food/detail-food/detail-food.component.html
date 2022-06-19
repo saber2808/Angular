@@ -1,0 +1,30 @@
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Foods</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Foods</li>
+        <li class="breadcrumb-item active">{{dataFood.name}}</li>
+    </ol>
+<div class="row center">
+    <div class="col-12">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{{dataFood.image}}" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Tên món: {{dataFood.name}}</h5>
+                  <p class="card-text">Loại: {{dataFood.category}}</p>
+                  <p class="card-text">Mô tả: {{dataFood.desc}}</p>
+                  <p class="card-text">Số lượng: {{dataFood.quantity}}</p>
+                  <p class="card-text">Giá bán: {{dataFood.price}}</p>
+                  <p class="card-text">Tình trạng: {{dataFood.status}}</p>
+                  <p class="card-text">Bán chạy: {{dataFood.isHomePage}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>
