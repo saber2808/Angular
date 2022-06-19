@@ -1,0 +1,92 @@
+
+
+     <div class="container-fluid px-4">
+      <h1 class="mt-4">Vouchers</h1>
+      <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+          <li class="breadcrumb-item active">Tables</li>
+      </ol>
+      <div class="row">
+        <div class="col-4">
+          <div class="card mb-4">
+            <form #voucherForm="ngForm"> 
+              <div class="page" >
+                  <label style="text-align: center;" ><h1>Voucher</h1></label>
+                  <label class="field field_v1" style="padding-left: 30px;">
+                      <img [src]="imgSrc" height="300px" width="300px" (click)="fileUpLoader.click()">
+                    </label>
+                  <label class="field field_v1">
+                    <input class="field__input" placeholder="Best Seller" id="name" name="name" for="name" [(ngModel)]="name">
+                    <span class="field__label-wrap">
+                      <span class="field__label">Name</span>
+                    </span>
+                  </label>
+                  <label class="field field_v1">
+                      <input type="file" accept="image/png,image/jpg" class="form-control" #fileUpLoader id="imageUrl" name="imageUrl" for="imageUrl" [(ngModel)]="image" (change)="showPreview($event)">
+          
+                  </label>
+                  <label class="field field_v2">
+                    <input class="field__input" placeholder="Products best seller" id="desc" name="desc" for="desc" [(ngModel)]="desc">
+                    <span class="field__label-wrap">
+                      <span class="field__label">Description</span>
+                    </span>
+                  </label>   
+                  <label class="field field_v2">
+                      <input class="field__input" placeholder="Products best seller" id="quantity" name="quantity" for="quantity" [(ngModel)]="quantity">
+                      <span class="field__label-wrap">
+                        <span class="field__label">Quantity</span>
+                      </span>
+                    </label>  
+                    <label class="field field_v2">
+                      <input class="field__input" placeholder="Products best seller" id="discount" name="discount" for="discount" [(ngModel)]="discount">
+                      <span class="field__label-wrap">
+                        <span class="field__label">Discount</span>
+                      </span>
+                    </label>  
+                  <button class="snip1582" type="button" (click)="addVoucher(voucherForm)">Add Voucher</button>
+                  <button class="snip1582" type="button" (click)="updateVoucher(voucherForm)">Update Voucher</button>
+                </div>
+              </form>
+        </div>
+        </div>
+        <div class="col-8">
+          <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Voucher List
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+                <thead class="thead-dark">
+                   <tr>
+                      <th>Image</th>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Quantity</th>
+                      <th>Discount</th>
+                      <th>Action</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr *ngFor="let voucher of voucherList">
+                     <td><img src="{{voucher.image}}" style="height: 70px; width: 70px"></td>
+                      <td>{{voucher.name}}</td>
+                      <td>{{voucher.desc}}</td>
+                      <td>{{voucher.quantity}}</td>
+                      <td>{{voucher.discount}}</td>
+                      <td style="text-align: center;">
+                        <button class="custom-btn btn-3" (click)="onEdit(voucher)" data-toggle="modal" data-target="#exampleModal2">Update</button>
+                        <button class="custom-btn btn-5" (click)="deleteVoucher(voucher)">Delete</button>
+                     </td>
+                   </tr>
+                </tbody>
+             </table>
+            </div>
+        </div>
+        </div>
+      </div>
+     
+     
+    </div>
+
+    

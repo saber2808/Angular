@@ -1,0 +1,113 @@
+
+
+ <div class="container-fluid px-4">
+  <h1 class="mt-4">Category</h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+      <li class="breadcrumb-item active">Categories</li>
+  </ol>
+  <div class="row">
+    <div class="col-5">
+      <div class="card mb-4">
+        <div class="card-body">
+          <form #categoryForm="ngForm"> 
+            <div class="page" >
+                <label class="field field_v1" style="padding-left: 70px;">
+                  <img [src]="imgSrc" height="300px" width="300px" (click)="fileUpLoader.click()">
+                </label>
+                <label class="field field_v1">
+                  <input class="field__input" placeholder="Best Seller" id="title" name="title" for="title" [(ngModel)]="title">
+                  <span class="field__label-wrap">
+                    <span class="field__label">Title</span>
+                  </span>
+                </label>
+                <label class="field field_v1">
+                  <input type="file" accept="image/png,image/jpg" class="form-control" #fileUpLoader id="imageUrl" name="imageUrl" for="imageUrl" [(ngModel)]="image" (change)="showPreview($event)">
+            
+                </label>
+                <label class="field field_v2">
+                  <input class="field__input" placeholder="Products best seller" id="desc" name="desc" for="desc" [(ngModel)]="desc">
+                  <span class="field__label-wrap">
+                    <span class="field__label">Description</span>
+                  </span>
+                </label>   
+                  <button class="snip1582" (click)="addCate(categoryForm)">Add Category</button>
+              </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="col-7">
+      <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Category list
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+            <thead class="thead-dark">
+               <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let cate of cateList">
+                 <td><img src="{{cate.image}}" style="height: 70px; width: 70px"></td>
+                  <td>{{cate.title}}</td>
+                  <td>{{cate.desc}}</td>
+                  <td style="text-align: center;">
+                    <button class="button-38" (click)="onEdit(cate)" data-toggle="modal" data-target="#myModal" role="button">Update</button>
+                    <button class="button-38" (click)="DetailCategory(cate.id)" role="button">Detail</button>
+                    <button class="button-38" (click)="deleteCate(cate)" role="button">Delete</button>
+                 </td>
+               </tr>
+            </tbody>
+         </table>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- code by w3codegenerator.com -->
+<div class="modal fade" id="myModal" role="document" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+           </div>
+          <div class="modal-body">
+            <form #categoryUpdateForm="ngForm"> 
+              <div class="page" >
+                  <div style="text-align: center;">
+                    <img [src]="imgSrc" height="150px" width="150px" (click)="fileUpLoader.click()">
+                  </div>
+                  <label class="field field_v1">
+                    <input class="field__input" placeholder="Best Seller" id="titleEdit" name="titleEdit" for="titleEdit" [(ngModel)]="titleEdit">
+                    <span class="field__label-wrap">
+                      <span class="field__label">Title</span>
+                    </span>
+                  </label>
+                  <label class="field field_v1">
+                    <input type="file" accept="image/png,image/jpg" class="form-control" #fileUpLoader id="imageUrl" name="imageUrl" for="imageUrl" [(ngModel)]="imageEdit" (change)="showPreview($event)">
+              
+                  </label>
+                  <label class="field field_v2">
+                    <input class="field__input" placeholder="Products best seller" id="descEdit" name="descEdit" for="descEdit" [(ngModel)]="descEdit">
+                    <span class="field__label-wrap">
+                      <span class="field__label">Description</span>
+                    </span>
+                  </label>   
+                </div>
+              </form>
+          </div>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (close)="resetForm()" data-dismiss="modal">Close</button>
+               <button type="button" (click)="updateCate(categoryUpdateForm)" class="btn btn-primary">Save changes</button>
+          </div>
+       </div>
+  </div>
+</div>

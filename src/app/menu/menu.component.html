@@ -1,216 +1,88 @@
-<div class="all-page-title page-breadcrumb">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Special Menu</h1>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End All Pages -->
-
-<!-- Start Menu -->
-<div class="menu-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>Special Menu</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="special-menu text-center">
-                    <div class="button-group filter-button-group">
-                        <button class="active" data-filter="*">All</button>
-                        <button data-filter=".drinks">Drinks</button>
-                        <button data-filter=".lunch">Lunch</button>
-                        <button data-filter=".dinner">Dinner</button>
+    <body>
+        <app-header></app-header>
+        <div class="all-page-title page-breadcrumb">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Special Menu</h1>
                     </div>
                 </div>
             </div>
         </div>
-            
-        <div class="row special-list">
-            <div class="col-lg-4 col-md-6 special-grid drinks">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-01.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Drinks 1</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
+        <!-- End All Pages -->
+        
+        <!-- Start Menu -->
+        <div class="menu-box" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="heading-title text-center">
+                            <h2>Special Menu</h2>
+                            <div class="d-flex justify-content-center">
+                                <div class="input-group rounded col-6">
+                                    <input type="search" class="form-control rounded" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <span class="input-group-text border-0" id="search-addon">
+                                      <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
+                           
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="special-menu text-center">
+                            <div class="button-group filter-button-group" >
+                                <!-- <button class="active" data-filter="*">All</button> -->
+                                <button  (click)="filter('')">All</button>
+                                <button  *ngFor="let cate of cateList" (click)="filter(cate.title)">{{cate.title}}</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid drinks">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-02.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Drinks 2</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid drinks">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-03.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Drinks 3</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
+                    
+                <div class="row special-list">
+                    <div class="col-md-4 special-grid drinks" *ngFor="let food of filterCategory | filter:searchKey:'name'">
+                        <div class="gallery-single fix" style="text-align: center;">
+                            <img src="{{food.image}}" class="img-fluid w-100 " style="height: 200px;" alt="Image">
+                            <div class="why-text">
+                                <h4>{{food.name}}</h4>
+                                <p style="font-size: 15px;"><span class="d-inline-block text-truncate" style="max-width: 150px;">{{food.desc}}</span></p>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <div class="d-flex flex-row">
+                                            <h4 class="p-2">{{food.price | currency:'VND':"symbol"}}<span></span></h4>
+                                        </div>                                
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="d-flex flex-row">
+                                            <a class="snip1582 pl-3 ml-4 mt-1" (click)="addtocart(food)"><i class="fa-solid fa-cart-plus ml-3"></i></a>
+                                        </div>                                   
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                   
                 </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid lunch">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-04.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Lunch 1</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid lunch">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-05.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Lunch 2</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid lunch">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-06.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Lunch 3</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid dinner">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-07.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Dinner 1</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid dinner">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-08.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Dinner 2</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6 special-grid dinner">
-                <div class="gallery-single fix">
-                    <img src="/assets/images/img-09.jpg" class="img-fluid" alt="Image">
-                    <div class="why-text">
-                        <h4>Special Dinner 3</h4>
-                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                        <div class="row">
-                            <div class="column">
-                                <h5 class="col-md-3"> $7.79</h5>
-                            </div>
-                            <div class="column" style="padding-left: 100px;">
-                                <button class="button-57" role="button"><span class="text">Mua ngay</span><span>Thêm vào giỏ</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
-<!-- End Menu -->
-
-<!-- Start QT -->
-<div class="qt-box qt-background">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-left">
-                <p class="lead ">
-                    " If you're not the one cooking, stay out of the way and compliment the chef. "
-                </p>
-                <span class="lead">Michael Strahan</span>
             </div>
         </div>
-    </div>
-</div>
+        <!-- End Menu -->
+        
+        <!-- Start QT -->
+        <div class="qt-box qt-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-left">
+                        <p class="lead ">
+                            " If you're not the one cooking, stay out of the way and compliment the chef. "
+                        </p>
+                        <span class="lead">Michael Strahan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </body>

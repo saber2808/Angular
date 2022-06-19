@@ -1,0 +1,197 @@
+
+
+ <div class="container-fluid px-4">
+  <h1 class="mt-4">Users</h1>
+  <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+      <li class="breadcrumb-item active">Users</li>
+  </ol>
+  <div class="row">
+    <!-- <div class="col-4">
+      <div class="card mb-4">
+        <form #foodForm="ngForm" > 
+          <div class="page" >
+             
+              <label style="text-align: center;" ><h1>User</h1></label>
+              
+              <label class="field field_v1" style="padding-left: 30px;" >
+                <img [src]="imgSrc" height="300px" width="300px" (click)="fileUpLoader.click()">
+              </label>
+              <div class="form-outline">
+                <label class="form-label" for="typeText">Họ và tên</label>
+                <input type="text" id="typeText"  name="fullName" for="fullName" [(ngModel)]="fullName" class="form-control" />
+              </div>
+              <input type="file" accept="image/png,image/jpg" class="form-control" id="customFile" #fileUpLoader name="imageUrl" for="imageUrl" [(ngModel)]="image" (change)="showPreview($event)"/>
+              <div class="form-outline">
+                <label class="form-label" for="typeText">Email</label>
+                <input type="text" id="typeText"  name="email" for="email" [(ngModel)]="email" class="form-control" />
+              </div>  
+              <div class="form-outline">
+                <label class="form-label" for="typeText">Địa chỉ</label>
+                <input type="text" id="typeText"  name="address" for="address" [(ngModel)]="address" class="form-control" />
+              </div> 
+              <div class="form-outline">
+                <label class="form-label" for="typeText">Số điện thoại</label>
+                <input type="text" id="typeText"  name="phoneNumber" for="phoneNumber" [(ngModel)]="phoneNumber" class="form-control" />
+              </div> 
+                <label class="field field_v2">
+                  <p class="font-weight-bold" style="padding-top: 5px;">Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                  <select class="browser-default custom-select" id="status" name="status" for="status" [(ngModel)]="status">
+                    <option value=true>Kích hoạt</option>
+                    <option value=false>Vô hiệu hóa</option>
+                  </select>
+                </label>
+                <label class="field field_v2">
+                    <p class="font-weight-bold" style="padding-top: 5px;">Trending:&nbsp;&nbsp;&nbsp;</p>
+                    <select class="browser-default custom-select" id="isAdmin" name="isAdmin" for="isAdmin" [(ngModel)]="isAdmin">
+                      <option value=true>Kích hoạt</option>
+                      <option value=false>Vô hiệu hóa</option>
+                    </select>
+                </label> 
+            </div>
+          </form>
+    </div>
+    </div> -->
+    <div class="col-12">
+    <!-- <table mdbTable mdbTableScroll scrollY="true" maxHeight="200" scrollX="true" maxWidth="400">
+      <thead>
+        <tr>
+          <th *ngFor="let head of HeadElement" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let user of userList">
+          <td scope="col"><img src="{{user.image}}" style="height: 70px; width: 70px"></td>
+                  <td>{{user.fullName}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.address}}</td>
+                  <td>{{user.phoneNumber}}</td>
+                  <td>{{user.status}}</td>
+                  <td>{{user.isAdmin}}</td>
+                  <td style="text-align: center;">
+                    <button class="custom-btn btn-3"  data-toggle="modal" data-target="#exampleModal2">Update</button>
+                    <button class="custom-btn btn-5">Delete</button>
+                 </td>
+        </tr>
+      </tbody>
+    </table> -->
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th *ngFor="let head of HeadElement" class="center">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList">
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                  src="{{user.image}}"
+                  alt=""
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                  />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{user.fullName}}</p>
+                <p class="text-muted mb-0">{{user.email}}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">{{user.address}}</p>
+            <p class="text-muted mb-0">{{user.phoneNumber}}</p>
+          </td>
+          <td>
+            <span class="badge badge-success rounded-pill d-inline">{{user.status}}</span>
+          </td>
+          <td>{{user.isAdmin}}</td>
+          <td>
+            <button type="button" (click)="onEdit(user)" class="btn btn-link btn-sm btn-rounded" data-toggle="modal" data-target="#myModal">
+              Edit
+            </button>
+            <button type="button" (click)="detailUser(user.id)" class="btn btn-link btn-sm btn-rounded" data-toggle="modal" data-target="#myModal">
+              Detail
+            </button>
+            <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+              <div class="modal-dialog  ">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">...</div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+<!-- code by w3codegenerator.com -->
+<div class="modal fade" id="myModal" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+           </div>
+          <div class="modal-body">
+            <form #foodForm="ngForm" > 
+              <div class="page" >
+                  <div>
+                    <div style="text-align: center;">
+                      <label class="field field_v1" style="padding-left: 30px;" >
+                        <img [src]="imgSrc" height="140px" width="100px" (click)="fileUpLoader.click()">
+                      </label>
+                    </div>
+                      <div class="form-outline">
+                        <label class="form-label" for="typeText">Họ và tên</label>
+                        <input type="text" id="typeText"  name="fullName" for="fullName" [(ngModel)]="fullName" class="form-control" />
+                      </div>
+                      <input type="file" accept="image/png,image/jpg" class="form-control" id="customFile" #fileUpLoader name="imageUrl" for="imageUrl" [(ngModel)]="image" (change)="showPreview($event)"/>
+                      <div class="form-outline">
+                        <label class="form-label" for="typeText">Email</label>
+                        <input type="text" id="typeText"  name="email" for="email" [(ngModel)]="email" class="form-control" />
+                      </div>  
+                      <div class="form-outline">
+                        <label class="form-label" for="typeText">Địa chỉ</label>
+                        <input type="text" id="typeText"  name="address" for="address" [(ngModel)]="address" class="form-control" />
+                      </div> 
+                      <div class="form-outline">
+                        <label class="form-label" for="typeText">Số điện thoại</label>
+                        <input type="text" id="typeText"  name="phoneNumber" for="phoneNumber" [(ngModel)]="phoneNumber" class="form-control" />
+                      </div> 
+                        <label class="field field_v2">
+                          <p class="font-weight-bold" style="padding-top: 5px;">Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                          <select class="browser-default custom-select" id="status" name="status" for="status" [(ngModel)]="status">
+                            <option [ngValue]="true">Kích hoạt</option>
+                            <option [ngValue]="false">Vô hiệu hóa</option>
+                          </select>
+                        </label>
+                        <label class="field field_v2">
+                            <p class="font-weight-bold" style="padding-top: 5px;">Trending:&nbsp;&nbsp;&nbsp;</p>
+                            <select class="browser-default custom-select" id="isAdmin" name="isAdmin" for="isAdmin" [(ngModel)]="isAdmin">
+                              <option [ngValue]="true">Kích hoạt</option>
+                              <option [ngValue]="false">Vô hiệu hóa</option>
+                            </select>
+                        </label> 
+                    </div>
+                  </div>
+              </form>
+          </div>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+       </div>
+  </div>
+</div>

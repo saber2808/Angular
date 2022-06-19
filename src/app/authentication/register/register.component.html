@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form #formTemplate="ngForm" (ngSubmit)="onsubmit(formTemplate)">
+                        <div class="mb-3" style="text-align: center;">
+                            <h4 class="text-dark text-muted">
+                                Register
+                            </h4>
+                            <img [src]="imgSrc" height="300px" width="300px" (click)="fileUpLoader.click()">
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email</label>
+                          <input type="email" class="form-control" name="email" ngModel>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Full name</label>
+                          <input type="text" class="form-control" name="fullName" ngModel>
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" accept="image/png,image/jpg" class="form-control" #fileUpLoader formControlName="image" (change)="showPreview($event)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" ngModel>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Address</label>
+                            <input type="text" class="form-control" name="address" ngModel>
+                        </div> 
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Phone number</label>
+                            <input type="text" class="form-control" name="phoneNumber" ngModel>
+                        </div> 
+                       
+                          <label class="field field_v2">
+                            <button type="submit" class="btn btn-info">Register</button>
+                          </label>
+                        
+
+                        <div class="row">
+                            <div class="col-md-6">   
+                                <a href="/login" style="text-decoration: none;">Have account? <span class="text-danger">Login</span></a>            
+                            </div>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

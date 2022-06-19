@@ -38,10 +38,14 @@
               "template_css/font-awesome.min.css",
               "template_css/responsive.css",
               "template_css/style.css",
-              "template_css/superslides.css"
-
+              "template_css/superslides.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "template_js/custom.js",
               "template_js/bootstrap.min.js",
               "template_js/images-loded.min.js",
@@ -56,7 +60,10 @@
               "template_js/picker.date.js",
               "template_js/picker.js",
               "template_js/picker.time.js",
-              "template_js/popper.min.js"
+              "template_js/popper.min.js",
+              "template_js/cart.js",
+              "template_js/scripts.js",
+              "template_js/datatables-simple-demo.js"
             ]
           },
           "configurations": {
@@ -122,6 +129,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
