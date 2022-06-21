@@ -6,6 +6,7 @@ import { Order } from 'src/model/order.model';
 import { CartService } from './cart.service';
 import { CheckoutService } from './checkout/checkout.service';
 import { render } from 'creditcardpayments/creditCardPayments';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -26,6 +27,7 @@ export class CartComponent implements OnInit {
   orderForm!: FormGroup;
   orderObj : Order = {
     id: '',
+    date: '',
     emailUser: '',
     nameUser: '',
     totalOrder: 0,
@@ -111,17 +113,21 @@ export class CartComponent implements OnInit {
       currency: "USD",
       value: Math.ceil(grandTotal).toString(),
       onApprove: (details) =>{
-        this.addOrder(this.orderForm.value);
-        this.emptyCart();
-        this.toast.success({detail:"Thanh toán thành công", summary:"Chúc mừng bạn đã thanh toán đơn hàng thành công!", duration:3000})
+        
       }
     })
+    this.addOrder(this.orderForm.value);
+    this.emptyCart();
+    this.toast.success({detail:"Thanh toán thành công", summary:"Chúc mừng bạn đã thanh toán đơn hàng thành công!", duration:3000})
   }
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
   addOrder(orderForm: NgForm){
     if(this.emailUser == '' || this.nameUser == '' || this.phoneNumber == '' || this.address == '0'){
       alert('not null')
     }
     this.orderObj.id = ''
+    this.orderObj.date = Date.now().toString();
     this.orderObj.emailUser = this.emailUser;
     this.orderObj.nameUser = this.nameUser;
     this.orderObj.totalOrder = this.totalOrder;
