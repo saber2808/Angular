@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
   }
   addtocart(food: any){
     this.cartService.addtoCart(food);
-    this.toast.success({detail:"Thêm vào giỏ", summary:"Đã thêm sản phẩm " + food.name + " vào giỏ hàng thành công", duration:3000})
+    this.toast.success({detail:"Thêm vào giỏ", summary:"Đã thêm sản phẩm " + food.name + " vào giỏ hàng thành công", duration:1000})
   }
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;

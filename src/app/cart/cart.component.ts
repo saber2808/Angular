@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Order } from 'src/model/order.model';
 import { CartService } from './cart.service';
@@ -16,24 +16,13 @@ export class CartComponent implements OnInit {
 
   public foods: any = [];
   public grandTotal!: number;
-  changecurrency: number = 0;
   paymentHandler:any = null;
   success:boolean = false
   failure:boolean = false
-  constructor(private cartService: CartService, private checkout: CheckoutService, private route: ActivatedRoute, private toast: NgToastService) { 
+  constructor(private cartService: CartService, private checkout: CheckoutService, private routing: Router ,private route: ActivatedRoute, private toast: NgToastService) { 
     
   }
-  CheckoutPaypal(grandTotal: number){
-    grandTotal = grandTotal/23000
-    render({
-      id: "#myPaypalButtons",
-      currency: "USD",
-      value: Math.ceil(grandTotal).toString(),
-      onApprove: (details) =>{
-        alert("Thanh toán thành công");
-      }
-    })
-  }
+  
   orderForm!: FormGroup;
   orderObj : Order = {
     id: '',
@@ -57,7 +46,6 @@ export class CartComponent implements OnInit {
     this.cartService.getProducts().subscribe(res=>{
       this.foods = res;
       this.grandTotal = this.cartService.getTotalPrice();
-      this.changecurrency = this.grandTotal
     })  
   }
   
@@ -82,9 +70,7 @@ export class CartComponent implements OnInit {
 
         if(data.data === "success"){
           this.success = true
-          this.route.queryParams.subscribe(params=>{
-            this.checkout = params['home']
-          })
+          this.routing.navigate(['/home']);
           this.toast.success({detail:"Thanh toán thành công", summary:"Chúc mừng bạn đã thanh toán đơn hàng thành công!", duration:3000})
         }else{
           this.failure = true
@@ -97,6 +83,8 @@ export class CartComponent implements OnInit {
       amount: grandTotal,
       currency: "VND",
     })
+    this.addOrder(this.orderForm.value);
+    this.emptyCart();
   }
   invokeStripe(){
     if (!window.document.getElementById('stripe-script')) {
@@ -115,6 +103,19 @@ export class CartComponent implements OnInit {
       };
       window.document.body.appendChild(script);
     }
+  }
+  CheckoutPaypal(grandTotal: number){
+    grandTotal = grandTotal/23000
+    render({
+      id: "#myPaypalButtons",
+      currency: "USD",
+      value: Math.ceil(grandTotal).toString(),
+      onApprove: (details) =>{
+        this.addOrder(this.orderForm.value);
+        this.emptyCart();
+        this.toast.success({detail:"Thanh toán thành công", summary:"Chúc mừng bạn đã thanh toán đơn hàng thành công!", duration:3000})
+      }
+    })
   }
   addOrder(orderForm: NgForm){
     if(this.emailUser == '' || this.nameUser == '' || this.phoneNumber == '' || this.address == '0'){
