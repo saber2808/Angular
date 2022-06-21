@@ -44,7 +44,7 @@
                 </div>
                     
                 <div class="row special-list">
-                    <div class="col-md-4 special-grid drinks" *ngFor="let food of filterCategory | filter:searchKey:'name'">
+                    <div class="col-md-4 special-grid drinks" *ngFor="let food of filterCategory | filter:searchKey:'name' | paginate: {itemsPerPage: 6, currentPage:p};">
                         <div class="gallery-single fix" style="text-align: center;">
                             <img src="{{food.image}}" class="img-fluid w-100 " style="height: 200px;" alt="Image">
                             <div class="why-text">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                   
+                    <pagination-controls (pageChange)="p = $event" style="text-align: center;"></pagination-controls>
                 </div>
             </div>
         </div>

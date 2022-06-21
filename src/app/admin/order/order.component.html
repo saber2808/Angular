@@ -1,0 +1,46 @@
+
+
+ <div class="container-fluid px-4">
+    <h1 class="mt-4">Order</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Orders</li>
+    </ol>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+                Danh sách hóa đơn
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped table-responsive-stack"  id="tableOne">
+              <thead class="thead-dark">
+                 <tr>
+                    <th>Email</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Tổng thanh toán</th>
+                    <th>Chức năng</th>
+                 </tr>
+              </thead>
+              <tbody>
+                <tr mdbTableCol *ngFor="let ord of orders | paginate: {itemsPerPage: 5, currentPage:p};">
+                          <td><span class="d-inline-block text-truncate" style="max-width: 150px;">{{ord.emailUser}}</span></td>
+                          <td>{{ord.nameUser}}</td>
+                          <td>{{ord.phoneNumber}}</td>
+                          <td>{{ord.totalOrder | currency:'VND':"symbol"}} </td>
+                          <td style="text-align: center;">
+                            <button class="button-38" (click)="detailOrder(ord.id)" role="button">Detail</button>
+                            <button class="button-38" (click)="deleteOrder(ord)" role="button">Delete</button>
+                         </td>
+                </tr>
+              </tbody>
+           </table>
+           <pagination-controls (pageChange)="p = $event" style="text-align: center;"></pagination-controls>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+ 

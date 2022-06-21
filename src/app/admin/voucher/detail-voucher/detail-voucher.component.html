@@ -1,0 +1,27 @@
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Foods</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Foods</li>
+        <li class="breadcrumb-item active">{{dataVoucher.name}}</li>
+    </ol>
+<div class="row center">
+    <div class="col-12">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{{dataVoucher.image}}" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Tên món: {{dataVoucher.name}}</h5>
+                  <p class="card-text">Loại: {{dataVoucher.discount}}</p>
+                  <p class="card-text">Mô tả: {{dataVoucher.desc}}</p>
+                  <p class="card-text">Số lượng: {{dataVoucher.quantity}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>

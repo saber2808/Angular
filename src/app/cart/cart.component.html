@@ -40,6 +40,7 @@
                 <td>
                   <button class="btn btn-primary">Shop more</button>
                 </td>
+                
                 <td>
                   <button class="btn btn-success" data-toggle="modal" data-target="#myModal" (click)="infoOrder()">Check out</button>
                 </td>
@@ -51,6 +52,7 @@
       </div>
     </div>
   </ng-container>
+
 
   <ng-container *ngIf="foods.length==0">
     <div class="container">
@@ -98,13 +100,16 @@
                 <input disabled type="number" id="typeText"  name="total" for="total" [(ngModel)]="totalOrder" class="form-control" />
               </div>
              </form>
+             <div id="myPaypalButtons"></div>
            </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="button" class="btn btn-primary" (click)="makePayment(grandTotal)" (click)="addOrder(orderForm)">Thanh toán</button>
+               <button type="button" class="btn btn-secondary" (click)="CheckoutPaypal(grandTotal)">Thanh toán qua Paypal</button>
+               <button type="button" class="btn btn-primary" (click)="makePayment(grandTotal)">Thanh toán qua Stripe</button>
            </div>
         </div>
    </div>
+
  </div>
 </body>
 

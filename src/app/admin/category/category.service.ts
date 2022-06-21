@@ -12,7 +12,6 @@ export class CategoriesService {
 
     constructor(private data: AngularFirestore){}
 
-
     //Add product
     addCate(cate: Category){
         cate.id = this.data.createId();

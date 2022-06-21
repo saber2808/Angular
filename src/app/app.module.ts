@@ -33,6 +33,12 @@ import { DetailCategoryComponent } from './admin/category/detail-category/detail
 import { DetailUserComponent } from './admin/user/detail-user/detail-user.component';
 import { CreateUserComponent } from './admin/user/create-user/create-user.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { EditFoodComponent } from './admin/food/edit-food/edit-food.component';
+import { OrderComponent } from './admin/order/order.component';
+import { DetailOrderComponent } from './admin/order/detail-order/detail-order.component';
+import { DetailVoucherComponent } from './admin/voucher/detail-voucher/detail-voucher.component';
 
 
 
@@ -59,6 +65,10 @@ import { ProfileComponent } from './profile/profile.component';
     DetailUserComponent,
     CreateUserComponent,
     ProfileComponent,
+    EditFoodComponent,
+    OrderComponent,
+    DetailOrderComponent,
+    DetailVoucherComponent,
     
   ],
   imports: [
@@ -74,7 +84,9 @@ import { ProfileComponent } from './profile/profile.component';
     DropDownListModule,
     MatDialogModule,
     MDBBootstrapModule.forRoot(),
-    NgToastModule
+    NgToastModule,
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

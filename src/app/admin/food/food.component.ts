@@ -43,6 +43,7 @@ export class FoodComponent implements OnInit {
   isHomePage: boolean = false;
   HeadElement = ['Hình ảnh', 'Tên món', 'Mô tả', 'Phân loại', 'Tình trạng', 'Trending', 'Tùy chọn']
   editState: boolean = false;
+  p: number = 1;
 
   constructor(private route: Router,private data: FoodService, private storage: AngularFireStorage, private dataCate: CategoriesService, private toast: NgToastService){}
 
@@ -97,27 +98,21 @@ export class FoodComponent implements OnInit {
   }
 
   updateFood(foodUpdateForm: NgForm){
-    if(foodUpdateForm.value!=null){
-      var filePath = `${'food'}/${this.category}/${this.name}/${this.selectedImage.name}_${new Date().getTime()}`
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(()=>{
-          fileRef.getDownloadURL().subscribe((url)=>{
-            this.foodObj.image = url;
-            this.foodObj.name = this.nameEdit;
-            this.foodObj.category = this.categoryEdit;
-            this.foodObj.price = this.priceEdit;
-            this.foodObj.desc = this.descEdit;
-            this.foodObj.isHomePage = this.isHomePageEdit;
-            this.foodObj.quantity = this.quantityEdit;
-            this.foodObj.status = this.statusFoodEdit;
-            this.data.updateFood(this.id, this.foodObj);
-            this.toast.info({detail:"UpdateProduct success", summary:"Cập nhật sản phẩm " + this.foodObj.name + " thành công!", duration:3000})
-          })
-        })
-      ).subscribe();
-    }
-    this.resetForm();
+    // if(foodUpdateForm.value!=null){
+    //   var filePath = `${'food'}/${this.category}/${this.name}/${this.selectedImage.name}_${new Date().getTime()}`
+    //   const fileRef = this.storage.ref(filePath);
+    //   this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+    //     finalize(()=>{
+    //       fileRef.getDownloadURL().subscribe((url)=>{
+    //         this.foodObj.image = url;
+            
+    //       })
+    //     })
+    //   ).subscribe();
+    // }
+    this.data.updateFood(foodUpdateForm.value);
+    foodUpdateForm.reset();
+    this.toast.info({detail:"UpdateProduct success", summary:"Cập nhật sản phẩm " + this.foodObj.name + " thành công!", duration:3000})
   }
 
   deleteFood(food: Food){
@@ -129,6 +124,9 @@ export class FoodComponent implements OnInit {
   }
   detailFood(id: any){
     this.route.navigate(['dashboard/food/'+id])
+  }
+  editPageFood(id: any){
+    this.route.navigate(['dashboard/food/edit/'+id])
   }
   getAllCate(){
     this.dataCate.getAllCate().subscribe(res=>{
@@ -197,6 +195,12 @@ export class FoodComponent implements OnInit {
   selectStatus: string = '';
   selectChangeHander(event: any){
     this.selectStatus = event.target.value;
+  }
+  key: string = 'Price'
+  reverse: boolean = false;
+  sort(key: any){
+    this.key = key;
+    this.reverse = !this.reverse
   }
 
 

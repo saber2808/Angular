@@ -4,6 +4,7 @@ import { Voucher } from 'src/model/voucher.model';
 import { VoucherService } from './voucher.service';
 import { AngularFireStorage} from '@angular/fire/compat/storage'
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-voucher',
@@ -15,7 +16,7 @@ export class VoucherComponent implements OnInit {
   imgSrc : string = '/assets/icons/Voucher.png';
   selectedImage: any = null;
   isSubmitted: boolean = false;
-
+  p: number = 1;
   voucherList : Voucher[] = [];
   voucherUpdateForm!: FormGroup;
   voucherObj : Voucher = {
@@ -34,7 +35,7 @@ export class VoucherComponent implements OnInit {
 
   editState: boolean = false;
 
-  constructor(private data: VoucherService, private storage: AngularFireStorage){}
+  constructor(private route: Router,private data: VoucherService, private storage: AngularFireStorage){}
 
   ngOnInit(): void {
     this.getAllVoucher();
@@ -45,7 +46,7 @@ export class VoucherComponent implements OnInit {
 
       this.voucherList = res.map((e: any)=>{
         const data = e.payload.doc.data();
-        data.id = e.payload.doc.id;
+        data.id = e.payload.doc.id; 
         return data;
       })
     }, err => {
@@ -89,6 +90,9 @@ export class VoucherComponent implements OnInit {
       this.data.deleteVoucher(voucher);
     }
     
+  }
+  DetailVoucher(id: any){
+    this.route.navigate(['dashboard/food/'+id])
   }
 
   resetForm(){

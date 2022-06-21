@@ -14,6 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class MenuComponent implements OnInit {
 
 
+  p: number = 1;
   cateList : Category[] = [];
   public filterCategory: any;
   foodList : Food[] = [];

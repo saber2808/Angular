@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
   image : string = '';
   desc : string = '';
   imageUrl: string = '';
-
+  p: number = 1;
   editState: boolean = false;
 
   constructor(private data: CategoriesService, private storage: AngularFireStorage, private route: Router){}

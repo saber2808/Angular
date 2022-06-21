@@ -8,12 +8,12 @@ import { Observable } from "rxjs";
 
 export class CheckoutService{
 
-    constructor(private http:HttpClient){
+    constructor(private http: HttpClient){
 
     }
     //post request to server
     makePayment(stripeToken: any):Observable<any>{
-        const url = "http://localhost:5000/checkout/"
+        const url = "http://localhost:8080/checkout/"
 
         return this.http.post<any>(url,{
             token:stripeToken

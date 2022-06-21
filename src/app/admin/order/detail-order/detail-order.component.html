@@ -1,0 +1,26 @@
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Orders</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Orders</li>
+        <li class="breadcrumb-item active">{{dataOrder.id}}</li>
+    </ol>
+<div class="row center">
+    <div class="col-12">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Email khách hàng: {{dataOrder.emailUser}}</h5>
+                  <p class="card-text">Tên khách hàng: {{dataOrder.nameUser}}</p>
+                  <p class="card-text">Số điện thoại: {{dataOrder.phoneNumber}}</p>
+                  <p class="card-text">Địa chỉ: {{dataOrder.address}}</p>
+                  <p class="card-text">Tổng thanh toán: {{dataOrder.totalOrder}}</p>
+                  <p class="card-text">Tình trạng: {{dataOrder.status}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>

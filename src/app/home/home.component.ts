@@ -12,11 +12,17 @@ import { CartService } from '../cart/cart.service';
 })
 export class HomeComponent implements OnInit {
 
+
+  searchKey: string = "";
   foodList : Food[] = [];
+  p: number = 1;
   constructor(private dataFood: FoodService, private cartService: CartService, private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.getTrendingFood();
+    this.cartService.search.subscribe((val:any)=>{
+      this.searchKey = val;
+    })
   }
 
   getTrendingFood(){
@@ -50,6 +56,9 @@ export class HomeComponent implements OnInit {
         {
           this.foodList.push(e);
         }
+      })
+      this.foodList.forEach((a:any)=>{
+        Object.assign(a,{quantity:1,total:a.price});
       })
     })
     console.log(this.foodList);
